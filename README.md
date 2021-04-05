@@ -37,20 +37,8 @@ config
 ]
 ```
 
-Configure
----
 
-```
-php yii migrate --migrationPath=@app/vendor/yiisoft/yii2/rbac/migrations
-```
-
----
 Links
 
-    https://mysite.ru/user/default/login
-    https://mysite.ru/user/default/signup
-
-add to routes
-
-    '<_a:(login|logout|register|email-confirm|password-reset-request|password-reset|email-confirm-request)>' => 'user/default/<_a>',
-
+    https://mysite.ru/login
+    https://mysite.ru/register
