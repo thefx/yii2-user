@@ -41,11 +41,11 @@ class m200212_125648__create_user_table extends Migration
             ],
             [
                 [
-                    'fenix',
+                    'demo',
                     '7kStDR_wIl5w1orMD-spMck_Nnoy4FzM',
                     '$2y$13$ZCM/ARDfu2Zw4ndh5MyChuUwWRQ0jyD..Z.iu3WIe1rSJqDcvoPQ6',
                     null,
-                    'fenixq@mail.ru',
+                    'demo@demo.demo',
                     '',
                     1,
                     'created_at' => time(),
