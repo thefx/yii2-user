@@ -3,11 +3,11 @@
 /* @var $this View */
 /* @var $content string */
 
-use app\modules\admin\assets\BackendAsset;
+use thefx\user\assets\UserAsset\UserAsset;
 use yii\helpers\Html;
 use yii\web\View;
 
-BackendAsset::register($this);
+UserAsset::register($this);
 
 ?>
 <?php $this->beginPage() ?>
@@ -30,21 +30,15 @@ BackendAsset::register($this);
     <![endif]-->
 </head>
 
-<body class="hold-transition login-page">
+<body>
 
-    <div class="login-box">
-        <div class="login-logo">
-            <?= Html::encode($this->title) ?>
-        </div>
-        <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body">
-                <?= $content ?>
-            </div>
-            <!-- /.login-card-body -->
-        </div>
-    </div>
-    <!-- /.login-box -->
+<div class="form-signin">
+
+    <h1 class="h3 mb-3 font-weight-normal"><?= Html::encode($this->title) ?></h1>
+
+    <?= $content ?>
+
+</div>
 
 <?php $this->endBody() ?>
 
