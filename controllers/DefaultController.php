@@ -151,7 +151,8 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
             Yii::$app->getSession()->setFlash('success', 'Спасибо! Пароль успешно изменён.');
 
-            return $this->goHome();
+            return $this->redirect('/login');
+//            return $this->goHome();
         }
 
         return $this->render('password-reset', [
