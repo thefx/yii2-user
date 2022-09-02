@@ -2,10 +2,9 @@
 
 namespace thefx\user\forms;
 
-use app\shop\EmailHelper;
 use thefx\user\models\User;
-use yii\base\Model;
 use Yii;
+use yii\base\Model;
 
 /**
  * Signup form
@@ -20,11 +19,12 @@ class SignupForm extends Model
     public $password;
     public $passwordRepeat;
     public $verifyCode;
+    public $rules;
 
     public function rules()
     {
         return [
-            [['name', 'lastName', 'phone'], 'required'],
+            [['name', 'lastName'/*, 'phone'*/], 'required'],
             [['name', 'lastName', 'phone'], 'string'],
 
 //            ['username', 'filter', 'filter' => 'trim'],
@@ -42,6 +42,7 @@ class SignupForm extends Model
             ['password', 'string', 'min' => 6],
 
             ['passwordRepeat', 'compare', 'compareAttribute' => 'password'],
+            ['rules', 'match', 'pattern' => '/^1$/', 'message' => 'Согласитесь с условиями']
 
 //            ['verifyCode', 'captcha', 'captchaAction' => '/user/default/captcha'],
         ];
@@ -61,29 +62,38 @@ class SignupForm extends Model
             'status' => 'Статус',
             'password' => 'Пароль',
             'passwordRepeat' => 'Повторить пароль',
-            'verifyCode' => 'Код с картинки'
+            'verifyCode' => 'Код с картинки',
+            'rules' => 'Я согласен на обработку персональных данных',
         ];
     }
 
     /**
      * Signs user up.
      *
-     * @return User|null the saved model or null if saving fails
+     * @return User the saved model or null if saving fails
      */
     public function signup()
     {
         if ($this->validate()) {
-            $user = \app\shop\entities\Users\User::create(
-                $this->name,
-                $this->lastName,
-                $this->phone,
-                $this->email,
-                $this->password
-            );
-            if ($user->save()) {
-                EmailHelper::userRegister($user);
-                EmailHelper::userRegisterNotifyAdmin($user);
-                return $user;
+
+            $model = new User();
+            $model->username = uniqid('', true);
+            $model->name = $this->name;
+            $model->last_name = $this->lastName;
+            $model->email = $this->email;
+            $model->phone = $this->phone;
+            $model->status = User::STATUS_WAIT;
+            $model->setPassword($this->password);
+            $model->generateAuthKey();
+            $model->generateEmailConfirmToken();
+
+            if ($model->save()) {
+                Yii::$app->mailer->compose(['html' => '@thefx/user/mails/email-confirm-html'], ['user' => $model])
+                    ->setFrom([Yii::$app->params['emailNoReply'] => Yii::$app->params['nameNoReply']])
+                    ->setTo($model->email)
+                    ->setSubject('Завершить регистрацию')
+                    ->send();
+                return $model;
             }
         }
 

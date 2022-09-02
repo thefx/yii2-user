@@ -54,13 +54,7 @@ class LoginForm extends Model
             } elseif ($user && $user->status == User::STATUS_BLOCKED) {
                 $this->addError('email', 'Ваш аккаунт заблокирован.');
             } elseif ($user && $user->status == User::STATUS_WAIT) {
-//                $this->addError('email', 'Требуется завершить регистрацию.');
-                $link = Html::a(
-                    'Выслать письмо на ' . Html::encode($this->email) . ' еще раз?',
-                    ['/user/default/email-confirm-request', 'email' => $this->email],
-                    ['style' => 'text-decoration: underline;']
-                );
-                $this->addError('email', 'Для авторизации Вам нужно подтвердить email. <br />' . $link);
+                $this->addError('email', 'Для авторизации Вам нужно подтвердить email.');
             }
         }
     }

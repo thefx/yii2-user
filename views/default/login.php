@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap4\ActiveForm */
 /* @var $model LoginForm */
+/* @var $allowRegister bool */
 
 use thefx\user\forms\LoginForm;
 use yii\helpers\Html;
@@ -38,8 +39,11 @@ $this->registerCss('
     <a href="/password-reset-request">Забыли пароль?</a>
 </div>
 
-<div>
-    <a href="/register">Регистрация</a>
-</div>
+<?php if ($allowRegister) : ?>
+    <div>
+        <a href="/register">Регистрация</a>
+    </div>
+<?php endif; ?>
+
 
 <?php ActiveForm::end(); ?>

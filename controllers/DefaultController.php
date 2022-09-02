@@ -2,6 +2,7 @@
 
 namespace thefx\user\controllers;
 
+use InvalidArgumentException;
 use thefx\user\forms\ConfirmEmailRequestForm;
 use thefx\user\forms\EmailConfirmForm;
 use thefx\user\forms\LoginForm;
@@ -17,16 +18,21 @@ use yii\web\Response;
 
 class DefaultController extends Controller
 {
+    /**
+     * @var bool
+     */
+    public $allowRegister = true;
+
     public function behaviors()
     {
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'register'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
-                        'allow' => true,
+                        'actions' => ['register'],
+                        'allow' => $this->allowRegister,
                         'roles' => ['?'],
                     ],
                     [
@@ -45,16 +51,6 @@ class DefaultController extends Controller
         ];
     }
 
-//    public function actions()
-//    {
-//        return [
-//            'captcha' => [
-//                'class' => 'yii\captcha\CaptchaAction',
-//                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-//            ],
-//        ];
-//    }
-
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -69,6 +65,7 @@ class DefaultController extends Controller
 
         return $this->render('login', [
             'model' => $model,
+            'allowRegister' => $this->allowRegister,
         ]);
     }
 
@@ -94,7 +91,7 @@ class DefaultController extends Controller
 
     /**
      * @param $token
-     * @return string
+     * @return Response
      */
     public function actionEmailConfirm($token)
     {

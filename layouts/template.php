@@ -36,6 +36,8 @@ UserAsset::register($this);
 
     <h1 class="h3 mb-3 font-weight-normal"><?= Html::encode($this->title) ?></h1>
 
+    <?= \app\widgets\Alert::widget() ?>
+
     <?= $content ?>
 
 </div>

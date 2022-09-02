@@ -2,7 +2,7 @@
  
 use yii\db\Migration;
  
-class m200212_125648__create_user_table extends Migration
+class m200212_125648_create_user_table extends Migration
 {
     public function safeUp()
     {
@@ -15,6 +15,9 @@ class m200212_125648__create_user_table extends Migration
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique(),
+            'name' => $this->string(),
+            'last_name' => $this->string(),
+            'phone' => $this->string(),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),

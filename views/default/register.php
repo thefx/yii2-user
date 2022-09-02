@@ -1,7 +1,6 @@
 <?php
 
 use thefx\user\forms\SignupForm;
-use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
@@ -21,11 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $form->field($model, 'email', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('email')]])->label(false) ?>
 
-<?= $form->field($model, 'phone', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('phone'), 'type' => 'tel']])->label(false) ?>
+<?//= $form->field($model, 'phone', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('phone'), 'type' => 'tel']])->label(false) ?>
 
 <?= $form->field($model, 'password', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('password')]])->passwordInput()->label(false) ?>
 
 <?= $form->field($model, 'passwordRepeat', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('passwordRepeat')]])->passwordInput()->label(false) ?>
+
+<?= $form->field($model, 'rules')->checkbox()->label("Я согласен на обработку персональных данных") ?>
 
 <div class="form-group">
     <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>

@@ -23,9 +23,11 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property integer $status
  * @property integer $name
+ * @property string $last_name [varchar(50)]
  * @property integer $phone
  * @property string $delete_date [datetime]
  * @property int $delete_user [int(11)]
+
  */
 class User extends ActiveRecord implements IdentityInterface
 {
