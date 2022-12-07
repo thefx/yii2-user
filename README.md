@@ -45,7 +45,7 @@ If you want to prevent registration
     'controllerMap' => [
         'default' => [
             'class' => 'thefx\user\controllers\DefaultController',
-            'allowRegister' => true,
+            'allowRegister' => false,
         ],
     ],
 ],
