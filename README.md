@@ -20,7 +20,7 @@ Apply Migrations
 php yii migrate --migrationPath=@thefx/user/migrations
 ```
 
-config
+Config
 
 ```
 'modules' => [
@@ -35,6 +35,20 @@ config
         'loginUrl' => ['/login'],
     ],
 ]
+```
+
+If you want to prevent registration
+
+```
+'user' => [
+    'class' => 'thefx\user\Module',
+    'controllerMap' => [
+        'default' => [
+            'class' => 'thefx\user\controllers\DefaultController',
+            'allowRegister' => true,
+        ],
+    ],
+],
 ```
 
 
