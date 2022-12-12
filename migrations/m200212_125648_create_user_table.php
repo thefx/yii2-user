@@ -30,32 +30,32 @@ class m200212_125648_create_user_table extends Migration
             'delete_user' => $this->integer(),
         ], $tableOptions);
 
-        $this->batchInsert('{{%user}}',
-            [
-                'username',
-                'auth_key',
-                'password_hash',
-                'password_reset_token',
-                'email',
-                'email_confirm_token',
-                'status',
-                'created_at',
-                'updated_at'
-            ],
-            [
-                [
-                    'demo',
-                    '7kStDR_wIl5w1orMD-spMck_Nnoy4FzM',
-                    '$2y$13$ZCM/ARDfu2Zw4ndh5MyChuUwWRQ0jyD..Z.iu3WIe1rSJqDcvoPQ6',
-                    null,
-                    'demo@demo.demo',
-                    '',
-                    1,
-                    'created_at' => time(),
-                    'updated_at' => time()
-                ],
-            ]
-        );
+//        $this->batchInsert('{{%user}}',
+//            [
+//                'username',
+//                'auth_key',
+//                'password_hash',
+//                'password_reset_token',
+//                'email',
+//                'email_confirm_token',
+//                'status',
+//                'created_at',
+//                'updated_at'
+//            ],
+//            [
+//                [
+//                    'demo',
+//                    '7kStDR_wIl5w1orMD-spMck_Nnoy4FzM',
+//                    '$2y$13$ZCM/ARDfu2Zw4ndh5MyChuUwWRQ0jyD..Z.iu3WIe1rSJqDcvoPQ6',
+//                    null,
+//                    'demo@demo.demo',
+//                    '',
+//                    1,
+//                    'created_at' => time(),
+//                    'updated_at' => time()
+//                ],
+//            ]
+//        );
     }
  
     public function safeDown()

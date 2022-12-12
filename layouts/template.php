@@ -3,6 +3,7 @@
 /* @var $this View */
 /* @var $content string */
 
+use app\widgets\Alert;
 use thefx\user\assets\UserAsset\UserAsset;
 use yii\helpers\Html;
 use yii\web\View;
@@ -36,7 +37,7 @@ UserAsset::register($this);
 
     <h1 class="h3 mb-3 font-weight-normal"><?= Html::encode($this->title) ?></h1>
 
-    <?= \app\widgets\Alert::widget() ?>
+    <?= Alert::widget() ?>
 
     <?= $content ?>
 

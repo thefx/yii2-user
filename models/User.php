@@ -31,9 +31,9 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    const STATUS_BLOCKED = 0;
-    const STATUS_ACTIVE = 1;
-    const STATUS_WAIT = 2;
+    public const STATUS_BLOCKED = 0;
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_WAIT = 2;
 
     /**
      * @inheritdoc
@@ -42,40 +42,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return '{{%user}}';
     }
-
-//    public function rules()
-//    {
-//        return [
-//            ['username', 'required'],
-//            ['username', 'match', 'pattern' => '#^[\w._-]+$#i'],
-//            ['username', 'unique', 'targetClass' => self::class, 'message' => 'Такое имя пользователя уже зарегистрировано.'],
-//            ['username', 'string', 'min' => 2, 'max' => 255],
-//
-//            ['email', 'required'],
-//            ['email', 'email'],
-//            ['email', 'unique', 'targetClass' => self::class, 'message' => 'Такой Email уже зарегистрирован.'],
-//            ['email', 'string', 'max' => 255],
-//
-//            ['status', 'integer'],
-//            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-//            ['status', 'in', 'range' => array_keys(self::getStatusesArray())],
-//
-////            ['password', 'string', 'min' => 6],
-//        ];
-//    }
-//
-//    public function attributeLabels()
-//    {
-//        return [
-//            'user_id' => 'ID',
-//            'created_at' => 'Создан',
-//            'updated_at' => 'Обновлён',
-//            'username' => 'Имя пользователя',
-//            'email' => 'Email',
-//            'status' => 'Статус',
-//            'password' => 'Пароль',
-//        ];
-//    }
 
     public function behaviors()
     {
