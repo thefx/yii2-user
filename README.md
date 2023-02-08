@@ -34,7 +34,13 @@ Config
         'enableAutoLogin' => true,
         'loginUrl' => ['/login'],
     ],
+],
+'urlManager' => [
+    'rules' => [
+        '<_a:(login|logout|register|email-confirm|password-reset-request|password-reset|email-confirm-request)>' => 'frontend/user/<_a>',
+    ]
 ]
+
 ```
 
 If you want to prevent registration

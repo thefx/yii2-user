@@ -8,9 +8,9 @@ class Bootstrap implements BootstrapInterface
 {
     public function bootstrap($app)
     {
-        $app->getUrlManager()->addRules([
-            '<_a:(login|logout|register|email-confirm|password-reset-request|password-reset|email-confirm-request)>' => 'user/default/<_a>',
-        ], false);
+//        $app->getUrlManager()->addRules([
+//            '<_a:(login|logout|register|email-confirm|password-reset-request|password-reset|email-confirm-request)>' => 'user/default/<_a>',
+//        ], false);
 
         /*
          * Регистрация модуля в приложении
