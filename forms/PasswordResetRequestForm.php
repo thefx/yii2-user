@@ -61,7 +61,6 @@ class PasswordResetRequestForm extends Model
 //            ->send();
         
         return Yii::$app->mailer->compose(['html' => '@thefx/user/mails/password-reset-html'], ['user' => $user])
-                ->setFrom([Yii::$app->params['emailNoReply'] => Yii::$app->params['nameNoReply']])
                 ->setTo($this->email)
                 ->setSubject('Смена пароля')
                 ->send();

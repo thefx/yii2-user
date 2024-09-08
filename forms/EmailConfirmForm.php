@@ -49,7 +49,6 @@ class EmailConfirmForm extends Model
     public function sendEmail(): bool
     {
         return Yii::$app->mailer->compose(['html' => '@thefx/user/mails/register-2-html'], ['user' => $this->_user])
-            ->setFrom([Yii::$app->params['emailNoReply'] => Yii::$app->params['nameNoReply']])
             ->setTo($this->_user->email)
             ->setSubject('Ваши регистрационные данные')
             ->send();
